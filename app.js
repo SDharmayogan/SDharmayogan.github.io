@@ -336,6 +336,27 @@ function scatter(data) {
        .attr("transform", "translate(" + 0 + "," + (height) + ")")
        .call(xaxis)
        .call(addLabel, 'City', 25);
+    
+    const annotations = [
+        {
+            note: {
+              label: "Added connector end 'arrow', note wrap '180', and note align 'left'",
+              title: "d3.annotationLabel",
+              wrap: 150,
+              align: "left"
+            }
+
+        }
+    ].map(function(d){ d.color = "#E8336D"; return d})
+
+    const makeAnnotations = d3.annotation()
+    .type(d3.annotationLabel)
+    .annotations(annotations)
+
+    svg
+          .append("g")
+          .attr("class", "annotation-group")
+          .call(makeAnnotations)
 
     svg
         .append('g')
@@ -354,6 +375,7 @@ function scatter(data) {
     //   .delay(5000)
     //   .remove();
  
+    
     
 }
 
