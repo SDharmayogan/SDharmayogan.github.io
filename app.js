@@ -158,6 +158,14 @@ function cityHighwayBar(data){
         .attr('class', 'yaxis')
         .call(yAxis)
 
+    const annot = svg
+       .append('g')
+       .attr('class', 'annot')
+       .attr("transform", "translate(" + 200 + "," + 200 + ")")
+       .style("font-size", "14px")
+       .append('text');
+
+   annot.append('tspan').text('MPG is generally higher for Highways')
 
 
 }
@@ -309,7 +317,27 @@ function scatter(data) {
        .attr('fill-opacity', 0.4)
        .attr("r", function (d) { return +d.EngineCylinders+2;})
 
-    
+    svg
+       .attr("transform","translate(" + margin + "," + margin + ")")
+       .selectAll(".scatter")
+       .data([0])
+       .enter().append("circle")
+       .attr("cx", 350)
+       .attr("cy",50)
+       .attr("r",57)
+       .style("fill","none")
+       .style("stroke", "red")
+       
+    const annot = svg
+       .append('g')
+       .attr('class', 'annot')
+       .attr("transform", "translate(" + 250 + "," + 120 + ")")
+       .style("font-size", "10px")
+       .append('text');
+
+   annot.append('tspan').text('Electric cars have significantly higher MPG')
+
+
     xaxis = d3.axisBottom(x)
             .tickValues([10,20,50,100])
             .tickFormat(d3.format("~s"))
@@ -337,38 +365,22 @@ function scatter(data) {
        .call(xaxis)
        .call(addLabel, 'City', 25);
     
-    const annotations = [
-        {
-            note: {
-              label: "Added connector end 'arrow', note wrap '180', and note align 'left'",
-              title: "d3.annotationLabel",
-              wrap: 150,
-              align: "left"
-            }
+    //svg
+    //      .append("g")
+    //      .attr("class", "annotation-group")
+    //      .call(makeAnnotations)
 
-        }
-    ].map(function(d){ d.color = "#E8336D"; return d})
-
-    const makeAnnotations = d3.annotation()
-    .type(d3.annotationLabel)
-    .annotations(annotations)
-
-    svg
-          .append("g")
-          .attr("class", "annotation-group")
-          .call(makeAnnotations)
-
-    svg
-        .append('g')
-        .attr("transform", "translate(" + 400 + "," + (200) + ")")
-        .append('text')
-        .attr('class', 'legend-label')
-        .attr('x', -30)
-        .attr('y', -40)
-        .text(colorLabel)
-        .call(colorLegend)
-        .selectAll('.cell text')
-        .attr('dy', '0.1em');
+    //svg
+    //    .append('g')
+    //    .attr("transform", "translate(" + 400 + "," + (200) + ")")
+    //    .append('text')
+    //    .attr('class', 'legend-label')
+    //   .attr('x', -30)
+    //    .attr('y', -40)
+    //    .text(colorLabel)
+    //    .call(colorLegend)
+    //    .selectAll('.cell text')
+    //    .attr('dy', '0.1em');
     //svg
     //   .transition()
     //   .duration(1000)
@@ -476,6 +488,15 @@ function FuelTypeBar(data){
         .append('g')
         .attr('class', 'yaxis')
         .call(yAxis)
+
+    const annot = svg
+       .append('g')
+       .attr('class', 'annot')
+       .attr("transform", "translate(" + 90 + "," + 120 + ")")
+       .style("font-size", "14px")
+       .append('text');
+
+   annot.append('tspan').text('MPG is on average higher for Diesel than Gasoline')
 
 }
 
